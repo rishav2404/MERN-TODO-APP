@@ -1,13 +1,12 @@
-import React from "react";
 
-const TodoItem = ({
+const TodoItem = (
   title,
   description,
   isCompleted,
   updateHandler,
   deleteHandler,
   id,
-}) => {
+) => {
   return (
     <div className="todo">
       <div>

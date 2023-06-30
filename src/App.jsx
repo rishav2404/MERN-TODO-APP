@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { Toaster } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import { useContext, useEffect } from "react";
 import axios from "axios";
 import { Context, server } from "./main";
@@ -24,11 +24,12 @@ function App() {
         setLoading(false);
       })
       .catch((error) => {
+        toast.error(error.response.data.message);
         setUser({});
         setIsAuthenticated(false);
         setLoading(false);
       });
-  }, []);
+  },);
 
   return (
     <Router>

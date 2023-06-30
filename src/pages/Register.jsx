@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import { Context, server } from "../main";
@@ -67,7 +67,7 @@ const Register = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit">Sign Up</button>
+          <button disabled={loading} type="submit">Sign Up</button>
           <h4>Or</h4>
           <Link to="/login">Log In</Link>
         </form>
