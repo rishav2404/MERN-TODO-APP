@@ -6,13 +6,13 @@ import { Context, server } from "../main";
 
 const Login = () => {
   const { isAuthenticated, setIsAuthenticated, loading, setLoading } =
-    useContext(Context);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+    useContext(Context)
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
   const submitHandler = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+    e.preventDefault()
+    setLoading(true)
 
     try {
       const { data } = await axios.post(
@@ -29,17 +29,17 @@ const Login = () => {
         }
       );
 
-      toast.success(data.message);
-      setIsAuthenticated(true);
-      setLoading(false);
+      toast.success(data.message)
+      setIsAuthenticated(true)
+      setLoading(false)
     } catch (error) {
-      toast.error(error.response.data.message);
-      setLoading(false);
-      setIsAuthenticated(false);
+      toast.error(error.response.data.message)
+      setLoading(false)
+      setIsAuthenticated(false)
     }
   };
 
-  if (isAuthenticated) return <Navigate to={"/"} />;
+  if(isAuthenticated) {return (<Navigate to={"/"} />)}
 
   return (
     <div className="login">
@@ -59,7 +59,7 @@ const Login = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button disabled={loading} type="submit">
+          <button  type="submit">
             Login
           </button>
           <h4>Or</h4>
@@ -67,7 +67,7 @@ const Login = () => {
         </form>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

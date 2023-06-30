@@ -1,19 +1,22 @@
-import { useContext, useState } from "react";
-import { Link, Navigate } from "react-router-dom";
-import axios from "axios";
-import { Context, server } from "../main";
-import toast from "react-hot-toast";
+import { useContext, useState } from "react"
+import { Link, Navigate } from "react-router-dom"
+import axios from "axios"
+import { Context, server } from "../main"
+import toast from "react-hot-toast"
 
 const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const { isAuthenticated, setIsAuthenticated, loading, setLoading } =
-    useContext(Context);
+    useContext(Context)
+  
+  if (isAuthenticated) return <Navigate to={"/"} />
+
 
   const submitHandler = async (e) => {
-    setLoading(true);
-    e.preventDefault();
+    setLoading(true)
+    e.preventDefault()
     try {
       const { data } = await axios.post(
         `${server}/users/new`,
@@ -40,7 +43,7 @@ const Register = () => {
     }
   };
 
-  if (isAuthenticated) return <Navigate to={"/"} />;
+  
 
   return (
     <div className="login">
@@ -67,7 +70,7 @@ const Register = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button disabled={loading} type="submit">Sign Up</button>
+          <button type="submit" onSubmit={submitHandler()}>Sign Up</button>
           <h4>Or</h4>
           <Link to="/login">Log In</Link>
         </form>
